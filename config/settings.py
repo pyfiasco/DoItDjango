@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-o(3apvg*#(mf@+hkk@vn9xk7uz+-g(8^ug8yx)3ws4%53)tm%&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False    # 배포를 위해 False 설정
+DEBUG = True    # 배포를 위해 False 설정
 
-ALLOWED_HOSTS = ['neo21pow.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1','neo21pow.pythonanywhere.com']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages.apps.PagesConfig',       # pages app등록
+    'posts.apps.PostsConfig',       # posts app등록
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],                    # templates 경로 추가
+        'DIRS': [Path(BASE_DIR).joinpath('pages','template'),
+                 Path(BASE_DIR).joinpath('posts','template'),
+                 ],                                                # templates 경로 추가
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
