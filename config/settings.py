@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-o(3apvg*#(mf@+hkk@vn9xk7uz+-g(8^ug8yx)3ws4%53)tm%&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False    # 배포를 위해 False 설정
 
-ALLOWED_HOSTS = ['*','.pythonanywhere.com']
+ALLOWED_HOSTS = ['neo21pow.pythonanywhere.com']
 
 
 # Application definition
