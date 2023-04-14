@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-o(3apvg*#(mf@+hkk@vn9xk7uz+-g(8^ug8yx)3ws4%53)tm%&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False    # 배포를 위해 False 설정
 
-ALLOWED_HOSTS = ['neo21pow.pythonanywhere.com']
+ALLOWED_HOSTS = ['*','.pythonanywhere.com']
 
 
 # Application definition
@@ -105,9 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'    #'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'    #'UTC'
 
 USE_I18N = True
 
@@ -118,6 +118,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
