@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages.apps.PagesConfig',       # pages app등록
     'posts.apps.PostsConfig',       # posts app등록
+    'blog.apps.BlogConfig',       # posts app등록
 ]
 
 MIDDLEWARE = [
@@ -57,8 +58,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [Path(BASE_DIR).joinpath('pages','template'),
-                 Path(BASE_DIR).joinpath('posts','template'),
+        'DIRS': [Path(BASE_DIR).joinpath('pages','templates'),
+                 Path(BASE_DIR).joinpath('posts','templates'),
+                 Path(BASE_DIR).joinpath('blog', 'templates'),
                  ],                                                # templates 경로 추가
         'APP_DIRS': True,
         'OPTIONS': {
@@ -121,7 +123,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = [Path(BASE_DIR).joinpath('static'),
+               Path(BASE_DIR).joinpath('blog', 'static'),
+               ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
