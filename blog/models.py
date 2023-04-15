@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse  # new
 
 # Create your models here.
 
@@ -12,3 +13,7 @@ class Post(models.Model):
 
     def str(self):
         return self.title
+
+    def get_absolute_url(self):  # 절대 주소 얻기
+        # reverse - url temp_name으로 객체 참조 제공
+        return reverse('post_detail', args=[str(self.id)]) 
