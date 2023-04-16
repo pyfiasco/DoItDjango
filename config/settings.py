@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'neo21pow.pythonanywhere.com']   # host등록
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',  # whitenoise 관련
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,11 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages.apps.PagesConfig',       # 이후 생성 app
     'posts.apps.PostsConfig',
+    'accounts.apps.AccountsConfig',
 
 
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # whitenoise 관련
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -119,11 +122,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
+STATIC_ROOT = Path(BASE_DIR).joinpath('staticfiles')  
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [Path(BASE_DIR).joinpath('static')]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Login redirect url 설정
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
