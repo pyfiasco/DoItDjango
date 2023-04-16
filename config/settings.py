@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o(3apvg*#(mf@+hkk@vn9xk7uz+-g(8^ug8yx)3ws4%53)tm%&'
+SECRET_KEY = 'django-insecure-*$#41ow750$+n4mx#*85s$=ri8r$*k+w3f4$pvcj_3vwvexj+o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True    # 배포를 위해 False 설정
 
-ALLOWED_HOSTS = ['127.0.0.1','neo21pow.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'neo21pow.pythonanywhere.com']   # host등록
 
 
 # Application definition
@@ -38,9 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pages.apps.PagesConfig',       # pages app등록
-    'posts.apps.PostsConfig',       # posts app등록
-    'blog.apps.BlogConfig',       # posts app등록
+    'pages.apps.PagesConfig',       # 이후 생성 app
+    'posts.apps.PostsConfig',
+
+
 ]
 
 MIDDLEWARE = [
@@ -58,10 +58,8 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [Path(BASE_DIR).joinpath('pages','templates'),
-                 Path(BASE_DIR).joinpath('posts','templates'),
-                 Path(BASE_DIR).joinpath('blog', 'templates'),
-                 ],                                                # templates 경로 추가
+        # templates 추가
+        'DIRS': [Path(BASE_DIR).joinpath('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'ko-kr'    #'en-us'
+LANGUAGE_CODE = 'ko-kr'  # 'en-us'
 
-TIME_ZONE = 'Asia/Seoul'    #'UTC'
+TIME_ZONE = 'Asia/Seoul'  # 'UTC'
 
 USE_I18N = True
 
@@ -123,9 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = [Path(BASE_DIR).joinpath('static'),
-               Path(BASE_DIR).joinpath('blog', 'static'),
-               ]
+STATICFILES_DIRS = [Path(BASE_DIR).joinpath('static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

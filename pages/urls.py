@@ -1,3 +1,5 @@
+# pages/urls.py
+
 """config URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -13,15 +15,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib import admin
 from django.urls import path
-from .views import HomePageView, AboutPageView
-
+from .views import (homePageView,
+                    HomePageView,
+                    AboutPageView,)
 
 urlpatterns = [
-    # path('', homePageView, name='home'),    
-    path('', HomePageView.as_view(), name='home'),
-    path('about/', AboutPageView.as_view(), name='about'),
+    path('pages/', homePageView, name='home_pages'),  #함수 view 연결
+    path('', HomePageView.as_view(), name='home'),    # class view 연결
+    path('about/', AboutPageView.as_view(), name='about'),    # class view 연결
+    
+    
 ]
-
-
-
