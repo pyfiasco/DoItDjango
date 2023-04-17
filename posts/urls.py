@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import BlogListView, BlogDetailView, BlogCreateView, BlogUpdateView, BlogDeleteView
+from .views import (HomePageView,
+                    AboutPageView,                    
+                    BlogListView, 
+                    BlogDetailView, 
+                    BlogCreateView, 
+                    BlogUpdateView, 
+                    BlogDeleteView,
+                    )
 
-urlpatterns = [
+urlpatterns = [    
+    path('', HomePageView.as_view(), name='home'),    # class view 연결
+    path('about/', AboutPageView.as_view(), name='about'),    # class view 연결
     path('blog/', BlogListView.as_view(), name='blog'),    # class view 연결
     path('blog/<int:pk>/', BlogDetailView.as_view(), name='post_detail'),
     path('blog/new/', BlogCreateView.as_view(), name='post_new'),

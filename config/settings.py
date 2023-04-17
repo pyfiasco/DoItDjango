@@ -8,6 +8,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,9 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'pages.apps.PagesConfig',       # 이후 생성 app
-    'posts.apps.PostsConfig',
+    # Local
+    'posts.apps.PostsConfig',          
     'accounts.apps.AccountsConfig',
+    # 3rd Party
+    'crispy_forms',  # pip install django-crispy-forms
+    'crispy_bootstrap4',  # pip install crispy-bootstrap4  필요
+
 
 
 ]
@@ -134,3 +139,18 @@ LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'  # 사용자 정의 user사용
+
+# pip install template 사용
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# 비밀번호 변경시 이메일 전송  -> console 확인
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# sendgrid를 통한 메일 전송위한 설정
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = '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'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # sendgrid이용
+DEFAULT_FROM_EMAIL = 'neo21pow@gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

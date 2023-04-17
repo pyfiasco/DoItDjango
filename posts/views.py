@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -5,7 +6,16 @@ from .models import Post
 from django.urls import reverse_lazy
 
 # Create your views here.
+def homePageView(request):
+    return HttpResponse('Hello, World!')
 
+
+class HomePageView(TemplateView):
+    template_name = 'home.html'
+
+
+class AboutPageView(TemplateView):
+    template_name = 'about.html'
 
 class BlogListView(ListView):               # object_list 반환
     model = Post                            # model 지정
