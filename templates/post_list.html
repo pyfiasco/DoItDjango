@@ -1,34 +1,23 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends "base.html" %}
 
-<title>Blog homepage</title>
+{% block title %}Posts{% endblock title %}
 
 {% block content %}
-    <header>
-        <div class="nav-left">
-            <h1><a href="{% url 'blog' %}">Django blog</a></h1> 
-            <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
-            <link href="{% static 'css/base.css' %}" rel="stylesheet">
-        </div>
-        <div class="nav-right">
-            <a href="{% url 'post_new' %}">+ New Blog Post</a> 
-        </div>        
-    </header>
-    {% if user.is_authenticated %}
-        <p>Hi {{ user.username }}!</p>
-        <p><a href="{% url 'logout' %}">Log out</a></p>
-    {% else %}
-        <p>You are not logged in.</p>
-        <a href="{% url 'login' %}">Log In</a> 
-    {% endif %}
-
-
-    {% for post in all_posts_list %}
-        <div class="post-entry">
-            <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2> 
-            <p>{{ post.body }}</p>
-        </div>
-    {% endfor %}
- 
-      
+{% for post in all_posts_list %}
+  <div class="card">
+    <div class="card-header">
+      <span class="font-weight-bold">{{ post.title }}</span> &middot;
+      <span class="text-muted">by {{ post.author }} |
+      {{ post.date }}</span>
+    </div>
+    <div class="card-body">
+      {{ post.body }}
+    </div>
+    <div class="card-footer text-center text-muted">
+        <a href="{% url 'post_edit' post.pk %}">Edit</a> | 
+        <a href="{% url 'post_delete' post.pk %}">Delete</a>
+    </div>
+  </div>
+  <br />
+{% endfor %}
 {% endblock content %}
