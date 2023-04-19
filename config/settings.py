@@ -153,7 +153,7 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # sendgrid를 통한 메일 전송위한 설정
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = 'SG.3Z8pj4ItQfelD_'   # 자신의 api key 입력
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # sendgrid이용
 DEFAULT_FROM_EMAIL = 'neo21pow@gmail.com'
 EMAIL_PORT = 587
